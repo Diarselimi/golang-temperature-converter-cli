@@ -19,7 +19,7 @@ var errReadingInput = errors.New("Error reading input")
 
 func main() {
 
-	if len(os.Args) < 2 || len(os.Args) > 2 {
+	if len(os.Args) != 2 {
 		printError(errInvalidArguments)
 	}
 	originUnit := strings.ToUpper(os.Args[1])
@@ -33,7 +33,7 @@ func main() {
 
 		if originUnit == "C" {
 			convertToFahrenheit(originValue)
-		} else if originUnit == "F" {
+		} else {
 			convertToCelsius(originValue)
 		}
 
@@ -42,8 +42,7 @@ func main() {
 		if err != nil {
 			printError(errReadingInput)
 		}
-		shouldConvertAgain = strings.ToUpper(shouldConvertAgain)
-		shouldConvertAgain = strings.TrimSpace(shouldConvertAgain)
+		shouldConvertAgain = strings.ToUpper(strings.TrimSpace(shouldConvertAgain))
 
 		if shouldConvertAgain != "Y" {
 			fmt.Println("Good bye!")
